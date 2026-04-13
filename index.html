@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gal Fleissig — Software Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --bg: #f8f7f4;
+  --ink: #1a1a18;
+  --muted: #6b6b66;
+  --accent: #1d4ed8;
+  --accent-light: #e8eefb;
+  --rule: #e2e0d9;
+  --card: #ffffff;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(248,247,244,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* SECTIONS */
+section { padding: 7rem 0; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-bio {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  max-width: 38ch;
+}
+.hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-primary { background: var(--accent); color: #fff; border: 1.5px solid var(--accent); }
+.btn-primary:hover { background: #1a44c0; border-color: #1a44c0; }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--rule); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: -1px; left: 2.5rem; right: 2.5rem; height: 3px;
+  background: var(--accent);
+  border-radius: 0 0 2px 2px;
+}
+.hero-card-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+}
+.hero-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+.hero-stat { border-top: 1px solid var(--rule); padding-top: 1rem; }
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* SECTION HEADER */
+.section-header { margin-bottom: 3.5rem; }
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ABOUT */
+#about { background: var(--card); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+.about-contact-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.about-contact-item a { color: var(--accent); text-decoration: none; }
+.about-contact-item a:hover { text-decoration: underline; }
+.contact-icon { font-size: 1rem; width: 1.25rem; text-align: center; }
+.about-text p { font-size: 1rem; line-height: 1.8; color: #444; margin-bottom: 1.25rem; font-weight: 300; }
+.about-text p:last-child { margin-bottom: 0; }
+
+/* EXPERIENCE */
+.exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--rule); }
+.exp-item:first-of-type { border-top: 1px solid var(--rule); }
+.exp-period {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.exp-company {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
+.exp-role {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.exp-location {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #555;
+  font-weight: 300;
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.exp-bullets li::before {
+  content: 'to';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+.exp-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.exp-tech .tag { background: var(--accent-light); color: var(--accent); }
+
+/* SKILLS */
+#skills { background: var(--bg); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skill-card {
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 1.75rem;
+  background: var(--card);
+}
+.skill-card-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 2rem;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.project-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.project-card:hover::after { transform: scaleX(1); }
+.project-type {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.project-name {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.project-desc { font-size: 0.9rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+.project-card-full { grid-column: span 2; }
+
+/* EDUCATION */
+.edu-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem; }
+.edu-item:first-of-type { border-top: 1px solid var(--rule); }
+.edu-period { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; line-height: 1.6; }
+.edu-school { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); letter-spacing: 0.05em; margin-top: 0.5rem; }
+.edu-degree { font-family: var(--serif); font-size: 1.25rem; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.5rem; }
+.edu-detail { font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+/* PUBLICATION */
+.pub-card {
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  padding: 1.75rem 2rem;
+  background: var(--card);
+  border-radius: 0 3px 3px 0;
+}
+.pub-title { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 0.5rem; }
+.pub-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+.pub-meta a { color: var(--accent); text-decoration: none; }
+.pub-meta a:hover { text-decoration: underline; }
+
+/* CONTACT */
+#contact { border-top: 1px solid var(--rule); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.contact-cta { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -0.03em; line-height: 1.2; color: var(--ink); }
+.contact-cta em { font-style: italic; color: var(--accent); }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 400;
+  transition: all 0.2s;
+  background: var(--card);
+}
+.contact-link:hover { border-color: var(--accent); color: var(--accent); }
+.contact-link-icon { font-size: 1.1rem; width: 1.5rem; text-align: center; }
+.contact-link-label { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-left: auto; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-name { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); }
+.footer-copy { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .hero-inner, .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card-full { grid-column: span 1; }
+  section { padding: 5rem 0; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="#hero" class="nav-logo">Gal Fleissig</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-eyebrow">Software Engineer · Pittsburgh, PA</p>
+          <h1 class="hero-name">Gal<br/><em>Fleissig</em></h1>
+          <p class="hero-bio">Full-stack engineer with a background in ML and HCI research. I build scalable web applications, data pipelines, and tools that matter — from self-driving infrastructure to health-impact games.</p>
+          <div class="hero-links">
+            <a href="#contact" class="btn btn-primary">Get in touch</a>
+            <a href="#experience" class="btn btn-outline">View work</a>
+          </div>
+        </div>
+        <div>
+          <div class="hero-card">
+            <p class="hero-card-label">Core Technologies</p>
+            <div class="skill-tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">GoLang</span>
+              <span class="tag">Python</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">AWS</span>
+              <span class="tag">SQL</span>
+              <span class="tag">React Native</span>
+            </div>
+            <div class="hero-stat-row">
+              <div class="hero-stat">
+                <div class="hero-stat-num">2+</div>
+                <div class="hero-stat-label">Years at Aurora</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">$150K+</div>
+                <div class="hero-stat-label">Cloud cost savings</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">20+</div>
+                <div class="hero-stat-label">Students supervised</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">1</div>
+                <div class="hero-stat-label">ACM publication</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-num">01 — About</p>
+        <h2 class="section-title">A bit about me</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <div class="about-contact-item">
+            <span class="contact-icon">✉</span>
+            <a href="mailto:fleissigal@gmail.com">fleissigal@gmail.com</a>
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-icon">📍</span>
+            Pittsburgh, PA, USA
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-icon">💼</span>
+            <a href="https://linkedin.com/in/gal-fleissig" target="_blank">linkedin.com/in/gal-fleissig</a>
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-icon">🐙</span>
+            <a href="https://github.com/fleissigal" target="_blank">github.com/fleissigal</a>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>I'm a full-stack software engineer currently at Aurora Innovation, where I build mission-critical tools and dashboards that track the company's progress toward commercial launch of autonomous vehicles.</p>
+          <p>My background spans machine learning research, HCI, and full-stack development. I earned my BSc in Computer Science from the Technion with a specialization in ML, and spent time at Carnegie Mellon University both as an exchange student and later as a research programmer building health-impact games and applications.</p>
+          <p>I care deeply about code quality, system design, and the human experience behind every interface. Whether optimizing cloud infrastructure or shipping a new feature, I bring a research-driven mindset to every problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-num">02 — Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+      </div>
+
+```
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">Jan 2023 — Present</div>
+      <div class="exp-company">Aurora Innovation</div>
+    </div>
+    <div>
+      <h3 class="exp-role">Software Engineer (Full-Stack)</h3>
+      <p class="exp-location">Pittsburgh, PA</p>
+      <ul class="exp-bullets">
+        <li>Design, develop, test, deploy, and maintain full-stack web applications from scratch, across both frontend and backend.</li>
+        <li>Build scalable, responsive UIs using React and TypeScript; maintain gRPC services and API integrations.</li>
+        <li>Maintain scalable data pipelines and curation systems using AWS and SQL, with custom CLI tooling.</li>
+        <li>Spearheaded data optimization initiatives that reduced monthly cloud expenses by over $150K.</li>
+        <li>Built mission-critical dashboards with C-level visibility to track progress toward commercial launch.</li>
+      </ul>
+      <div class="exp-tech">
+        <span class="tag">React</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">GoLang</span>
+        <span class="tag">SQL</span>
+        <span class="tag">AWS</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">Feb 2020 — Jan 2023</div>
+      <div class="exp-company">Carnegie Mellon University</div>
+    </div>
+    <div>
+      <h3 class="exp-role">Research Programmer</h3>
+      <p class="exp-location">School of Computer Science, HCI · Pittsburgh, PA</p>
+      <ul class="exp-bullets">
+        <li>Programming team lead and UX team lead, responsible for end-to-end software development.</li>
+        <li>Developed cross-platform mobile and web transformational games for health-related social impact, serving underrepresented communities.</li>
+        <li>Supervised over 20 graduate and undergraduate students across multiple semesters.</li>
+        <li>Received awards and sponsorships from the NIH, NLM, and HHS for game development work.</li>
+      </ul>
+      <div class="exp-tech">
+        <span class="tag">React Native</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Unity</span>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects" style="background: var(--card); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-num">03 — Projects</p>
+        <h2 class="section-title">Things I've built</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <p class="project-type">Mobile · Android</p>
+          <h3 class="project-name">Shiftly</h3>
+          <p class="project-desc">An Android application that automatically manages shift scheduling in the workplace. Designed to simplify team coordination and reduce scheduling overhead.</p>
+        </div>
+        <div class="project-card">
+          <p class="project-type">ML · NLP</p>
+          <h3 class="project-name">Part-of-Speech Tagger</h3>
+          <p class="project-desc">Implemented POS tagging using a Maximum Entropy Markov Model (MEMM) and a neural-network based dependency parser, achieving strong performance on standard benchmarks.</p>
+        </div>
+        <div class="project-card">
+          <p class="project-type">ML · Classification</p>
+          <h3 class="project-name">Election Votes Prediction</h3>
+          <p class="project-desc">Built a prediction pipeline with data preparation and multiple classification models to forecast election outcomes, evaluating model accuracy across different approaches.</p>
+        </div>
+        <div class="project-card">
+          <p class="project-type">ML · Deep Learning</p>
+          <h3 class="project-name">Image &amp; Audio Classification</h3>
+          <p class="project-desc">Explored deep learning on MNIST, Fashion MNIST, and audio datasets using DDSP. Investigated model architectures and their tradeoffs on varied data modalities.</p>
+        </div>
+        <div class="project-card project-card-full">
+          <p class="project-type">ML · Random Forests · PhD Course</p>
+          <h3 class="project-name">Taxi Travel Time Prediction</h3>
+          <p class="project-desc">Applied Random Forest regression to predict taxi travel times using real-world datasets. Built as part of CMU's Introduction to Machine Learning (PhD-level) course, with a focus on feature engineering and model evaluation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-num">04 — Skills</p>
+        <h2 class="section-title">What I work with</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <p class="skill-card-title">Languages</p>
+          <div class="skill-list">
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">GoLang</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-card-title">Frameworks &amp; Platforms</p>
+          <div class="skill-list">
+            <span class="tag">React</span>
+            <span class="tag">React Native</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Unity</span>
+            <span class="tag">Android Studio</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-card-title">Infrastructure &amp; Tools</p>
+          <div class="skill-list">
+            <span class="tag">AWS</span>
+            <span class="tag">gRPC</span>
+            <span class="tag">Mobile &amp; Web Apps</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-card-title">Domains</p>
+          <div class="skill-list">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Full-Stack Dev</span>
+            <span class="tag">HCI Research</span>
+            <span class="tag">Data Pipelines</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-card-title">Leadership</p>
+          <div class="skill-list">
+            <span class="tag">Project Management</span>
+            <span class="tag">People Management</span>
+            <span class="tag">Team Lead</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-card-title">Languages (Human)</p>
+          <div class="skill-list">
+            <span class="tag">Hebrew (Native)</span>
+            <span class="tag">English (Fluent)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+
+  <section id="education" style="background: var(--card); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-num">05 — Education</p>
+        <h2 class="section-title">Academic background</h2>
+      </div>
+
+```
+  <div class="edu-item">
+    <div>
+      <div class="edu-period">Oct 2014 — Feb 2020</div>
+      <div class="edu-school">Technion — IIT</div>
+    </div>
+    <div>
+      <h3 class="edu-degree">BSc. Computer Science</h3>
+      <p class="edu-detail">Haifa, Israel · Specialized in Machine Learning (6 AI &amp; ML courses) · Minored in Entrepreneurship · Dean's List, Spring 2019 · PEF Scholarship of Excellence (4 years) · Teaching Assistant in Android App Development · Participated in multiple hackathons</p>
+    </div>
+  </div>
+
+  <div class="edu-item">
+    <div>
+      <div class="edu-period">2017</div>
+      <div class="edu-school">Carnegie Mellon University</div>
+    </div>
+    <div>
+      <h3 class="edu-degree">Exchange Student</h3>
+      <p class="edu-detail">School of Computer Science · Pittsburgh, PA · Graduate-level coursework including Introduction to Machine Learning (PhD)</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <div class="section-header" style="margin-bottom: 1.5rem;">
+      <p class="section-num" style="margin-bottom: 0.25rem;">Publication</p>
+    </div>
+    <div class="pub-card">
+      <h4 class="pub-title">"Structural Mismatches in Academic Game Development"</h4>
+      <p class="pub-meta">Fleissig, Evans, Wing, Hammer · Foundations of Digital Games (FDG) 2022 · <a href="https://dl.acm.org/doi/10.1145/3555858.3563279" target="_blank">ACM Digital Library ↗</a></p>
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div>
+          <p class="section-num">06 — Contact</p>
+          <h2 class="contact-cta">Let's build something <em>great</em> together.</h2>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:fleissigal@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉</span>
+            fleissigal@gmail.com
+            <span class="contact-link-label">Email</span>
+          </a>
+          <a href="https://linkedin.com/in/gal-fleissig" target="_blank" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            linkedin.com/in/gal-fleissig
+            <span class="contact-link-label">LinkedIn</span>
+          </a>
+          <a href="https://github.com/fleissigal" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🐙</span>
+            github.com/fleissigal
+            <span class="contact-link-label">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <span class="footer-name">Gal Fleissig</span>
+    <span class="footer-copy">© 2026 · galfleissig.com</span>
+  </footer>
+
+</body>
+</html>
